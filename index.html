@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <title>Önéletrajz generátor</title>
+       
+    </head>
+    <body>
+        <div class="container" id="cv-form">
+            <h1 class="text-center my-2">CV generátor</h1>
+            <p class="text-center">készítette SzF</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Személyes adatok</h3>
+                    <div class="form-group mt-2">
+                        <label for="nameField">Teljes név</label>
+                        <input type="text" id="nameField" class="form-control" placeholder="Írja be a teljes nevét" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="phoneField">Telefonszám</label>
+                        <input type="text" id="phoneField" class="form-control" placeholder="Írja be a telefonszámát" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="emailField">Email</label>
+                        <input type="text" id="emailField" class="form-control" placeholder="Írja be a email címét" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="addressField">Lakcím</label>
+                        <textarea id="addressField" class="form-control" placeholder="Írja be a lakcímét" rows="5">
+                       </textarea>
+    
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="">Töltse fel a fényképét</label>
+                        <input type="file" class="form-control" id="imgField"/>
+                    </div>
+                    <p class="text-secondary my-3">Fontos linkek</p>
+                    <div class="form-group mt-2">
+                        <label for="facebookField">Facebook</label>
+                        <input type="text" id="facebookField" class="form-control" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="instagramField">Instagram</label>
+                        <input type="text" id="instagramField" class="form-control" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="linkedinField">LinkedIn</label>
+                        <input type="text" id="linkedinField" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>Szakmai adatok</h3>
+                    <div class="form-group mt-2">
+                        <label for="">Célkitűzés</label>
+                        <textarea class="form-control" placeholder="Bevitel ide" rows="5" id="objectiveField"></textarea>
+                    </div>
+                    <div class="form-group mt-2" id="we">
+                        <label for="">Munkatapasztalat</label>
+                        <textarea  class="form-control weField" placeholder="Bevitel ide" rows="3"></textarea>
+                        
+                        <!---Új munkatapasztalat hozzáadása-->
+                        <div class="container text-center mt-2" id="weAddButton">
+                            <button onclick="addNewWEField()" class="btn btn-primary btn-sm">Hozzáadás</button>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group mt-2" id="aq">
+                        <label for="">Végzettségek</label>
+                        <textarea  class="form-control eqField" placeholder="Bevitel ide" rows="3"></textarea>
+                        
+                        <!---Új végzettség hozzáadása-->
+                        <div class="container text-center mt-3" id="aqAddButton">
+                            <button onclick="addNewAQField()" class="btn btn-primary btn-sm">Hozzáadás</button>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <div class="container text-center mt-3">
+                <button onclick="generateCV()" class="btn btn-primary btn-lg">CV létrehozás</button>    
+            </div>
+
+        </div>
+
+
+
+
+         <!--CV template----------------------------------------------------------------------------------------->
+        <div class="container" id="cv-template">
+            <div class="row">
+                <div class="col-md-4 text-center py-5 background">
+                    <!--első--->
+                    <img src="https://www.lremanagementllc.com/wp-content/uploads/2019/06/default-avatar.png" 
+                    alt=""
+                    class="img-fluid myimg"
+                    id="imgTemplate"
+                    />
+                    <div class="container">
+                        <p id="nameT1">John Doe</p>
+                        <p id="phoneT">+36702233432</p>
+                        <p id="emailT">john.doe@mail.com</p>
+                        <p id="addressT">Budapest, Hungary</p>
+                    </div>
+
+                    <hr />
+
+                    <p><a id="fbT" href="#1">https://www.facebook.com/johndoe</a></p>
+                    <p><a id="instaT" href="#2">https://www.instagram.com/johd</a></p>    
+                    <p><a id="linkedT" href="#3">https://www.linkedin.com/johnd</a></p>   
+                    
+                </div>
+                <div class="col-md-8 py-5">
+                    <!---második-->
+                    <h1 id="nameT2" class="text-center" style="font-weight: 900;">
+                        John Doe
+                    </h1>
+
+                    <!-----Objective card-->
+                    <div class="card mt-4">
+                        <div class="card-header background">
+                            <h3>Célkitűzés</h3>
+                        </div>
+                        <div class="card-body">
+                            <p id="objectiveT">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. At neque cum distinctio repellat, consequuntur dolor maiores, beatae adipisci blanditiis quod sit, ipsa totam esse quas velit fugit! Reprehenderit, a similique. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur dolorum in possimus sapiente enim minima, hic vitae ipsam. Porro doloremque at ducimus nisi laborum ex sint corporis, fugit dolor ab?
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                        <!-----Experience card-->
+                        <div class="card mt-4">
+                            <div class="card-header background">
+                                <h3>Tapasztalat</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul id="weT">
+                                    <li>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident veniam quam laborum similique, esse, quas.
+                                    </li>
+                                    <li>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident veniam quam laborum similique, esse, quas.
+                                    </li>
+                                    <li>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident veniam quam laborum similique, esse, quas.
+                                    </li>
+                                </ul>
+                            </div>
+    
+                        </div>
+
+                         <!-----Education card-->
+                         <div class="card mt-4">
+                            <div class="card-header background">
+                                <h3>Iskolai végzettség</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul id="aqT">
+                                    <li>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident veniam quam laborum similique, esse, quas.
+                                    </li>
+                                    <li>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident veniam quam laborum similique, esse, quas.
+                                    </li>
+                                    <li>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident veniam quam laborum similique, esse, quas.
+                                    </li>
+                                </ul>
+                            </div>
+    
+                        </div>
+                        
+                        <div class="container mt-3 text-center">
+                            <button onclick="printCV()" class="btn background">
+                                CV nyomtatása
+                            </button>
+                        </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!------------------------------------------------------->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
